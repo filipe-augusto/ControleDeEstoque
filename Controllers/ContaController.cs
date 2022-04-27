@@ -30,7 +30,8 @@ namespace ControleDeEstoque.Controllers
                 return View(login);
             }
 
-            var achou = (login.Usuario == "filipeaugusto" && login.Senha == "123");
+            //var achou = (login.Usuario == "filipeaugusto" && login.Senha == "123");
+            var achou = (UsuarioModel.ValidarUsuario(login.Usuario, login.Senha));
             if (achou)
             {
                 //GERAR O COOKIE DE AUTENTICAÇÃO
@@ -57,12 +58,12 @@ namespace ControleDeEstoque.Controllers
         }
 
         [AllowAnonymous]
-    [HttpPost]
-    public ActionResult LogOff()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
+        [HttpPost]
+        public ActionResult LogOff()
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
 
     }
 }
